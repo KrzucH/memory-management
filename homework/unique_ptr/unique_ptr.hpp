@@ -22,7 +22,7 @@ public:
     unique_ptr& operator=(const unique_ptr&) = delete;
 
     unique_ptr& operator=(const unique_ptr&& uniq) {
-        if (uniq.ptr_ != nullptr) {
+        if (this != &uniq) {
             delete ptr_;
             ptr_ = uniq.ptr_;
             uniq.ptr_ = nullptr;
