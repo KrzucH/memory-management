@@ -97,4 +97,19 @@ TEST(uniqAddTest, ValueTestV2) {
 
 }
 
+TEST(uniqAddTest, ResetValueTest) {
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(10, 20);
+    uniq.reset(new uniqAddTest(30, 20));
+    auto result = 50;
+
+    EXPECT_EQ(uniq->checkAddTest(), result);
+}
+
+TEST(uniqAddTest, DefaultCtrTest) {
+    my::unique_ptr<uniqAddTest> uniq;
+
+    EXPECT_EQ(uniq.get(), nullptr);
+}
+
+
 
