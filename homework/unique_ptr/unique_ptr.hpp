@@ -17,7 +17,7 @@ public:
 
     unique_ptr& operator=(const unique_ptr&) = delete;
 
-    unique_ptr& operator=(const unique_ptr&& uniq) {
+    unique_ptr& operator=(unique_ptr&& uniq) {
         if (this != &uniq) {
             delete ptr_;
             ptr_ = uniq.ptr_;
