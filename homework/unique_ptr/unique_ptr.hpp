@@ -1,6 +1,6 @@
 #pragma once
 
-
+namespace my {
 
 template <typename Type>
 class unique_ptr {
@@ -65,3 +65,4 @@ public:
 private:
     Type* ptr_ = nullptr;
 };
+}
