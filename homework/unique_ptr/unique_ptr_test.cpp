@@ -1,13 +1,11 @@
+#include "unique_ptr.hpp"
 #include <gtest/gtest.h>
 #include <memory>
-#include "unique_ptr.hpp"
-
 
 struct uniqAddTest {
-    uniqAddTest(int value1, int value2) :
-            value1_(value1),
-            value2_(value2)
-    {} 
+    uniqAddTest(int value1, int value2)
+        : value1_(value1),
+          value2_(value2) {}
     int checkAddTest() {
         return value1_ + value2_;
     }
@@ -25,48 +23,45 @@ TEST(uniqAddTest, ArrowTest) {
 }
 
 TEST(int, DereferenceTest) {
-    uniq_ptr<int> uniq = new int (100);
-    auto result = 100;    
+    uniq_ptr<int> uniq = new int(100);
+    auto result = 100;
 
     EXPECT_EQ(*uniq, result);
 }
 
 TEST(uniqIntTest, MoveTest) {
-    uniq_ptr<uniqAddTest> uniq = new uniqAddTest (100, 100);
-    auto uniq1 {std::move(uniq)};       
+    uniq_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
+    auto uniq1{std::move(uniq)};
 
     EXPECT_EQ(uniq.get(), nullptr);
 
-    uniq_ptr<uniqAddTest> uniq2 {};
+    uniq_ptr<uniqAddTest> uniq2{};
 
     EXPECT_EQ(uniq2.get(), nullptr);
 
     auto uniq3 = std::move(uniq1);
 
     EXPECT_EQ(uniq1.get(), nullptr);
-
 }
-
 
 TEST(int, ResetTest) {
     uniq_ptr<int> uniq = new int(8);
-    constexpr int newValue = 6;  
+    constexpr int newValue = 6;
 
     uniq.reset(new int(newValue));
 
     ASSERT_EQ(*uniq, newValue);
 
     uniq.reset();
-    
+
     EXPECT_EQ(uniq.get(), nullptr);
 }
 
 TEST(uniqAddTest, ReleaseTest) {
     uniq_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
 
-    uniq_ptr<uniqAddTest> uniq2 = uniq.release();    
+    uniq_ptr<uniqAddTest> uniq2 = uniq.release();
 
     EXPECT_EQ(uniq.get(), nullptr);
     EXPECT_NE(uniq2.get(), nullptr);
 }
-
