@@ -15,6 +15,8 @@ private:
     int value2_{};
 };
 
+template class my::unique_ptr<uniqAddTest>;
+
 TEST(uniqAddTest, ArrowTest) {
     my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(20, 30);
     auto result = 50;
