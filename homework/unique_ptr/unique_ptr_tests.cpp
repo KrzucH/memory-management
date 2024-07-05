@@ -1,7 +1,6 @@
-#include "unique_ptr.hpp"
 #include <gtest/gtest.h>
 #include <memory>
-
+#include "unique_ptr.hpp"
 
 
 struct uniqAddTest {

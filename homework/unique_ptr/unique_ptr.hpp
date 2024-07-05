@@ -5,8 +5,8 @@ namespace my {
 template <typename Type>
 class unique_ptr {
 public:
-    unique_ptr(Type* uniq = nullptr) : ptr_(uniq) 
-    {}
+    unique_ptr(Type* uniq = nullptr) 
+        : ptr_(uniq) {}
 
     unique_ptr(const unique_ptr&) = delete;
 
