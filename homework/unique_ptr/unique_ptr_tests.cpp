@@ -31,7 +31,7 @@ TEST(int, DereferenceTest) {
     EXPECT_EQ(*uniq, result);
 }
 
-TEST(uniqIntTest, MoveTest) {
+TEST(uniqIntTest, MoveTestV1) {
     my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
     auto uniq1{std::move(uniq)};
 
@@ -67,3 +67,34 @@ TEST(uniqAddTest, ReleaseTest) {
     EXPECT_EQ(uniq.get(), nullptr);
     EXPECT_NE(uniq2.get(), nullptr);
 }
+
+TEST(uniqAddTest, MoveTestV2) {
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(50, 50);
+
+    auto newPtr = std::move(uniq);
+
+    EXPECT_NE(newPtr.get(), nullptr);  
+}
+
+TEST(uniqAddTest, ValueTest) {
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(100, 200);
+    auto value = uniq->checkAddTest();
+    auto result = 300;
+
+    EXPECT_EQ(value, result);
+}
+
+TEST(uniqAddTest, ValueTestV2) {
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(50, 70);
+    auto result = 120;
+    my::unique_ptr<uniqAddTest> uniq1 = std::move(uniq);
+    auto uniq2 = std::move(uniq1);
+
+    EXPECT_EQ(uniq2->checkAddTest(), result);
+    EXPECT_EQ(uniq.get(), nullptr);
+    EXPECT_EQ(uniq1.get(), nullptr);
+    EXPECT_NE(uniq2.get(), nullptr);
+
+}
+
+
