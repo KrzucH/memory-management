@@ -117,6 +117,7 @@ TEST(uniqAddTest, ReleaseTestV2) {
     auto result = 30;
 
     EXPECT_EQ(uniq2->checkAddTest(), result);
+    delete uniq2;
 }
 
 TEST(uniqAddTest, ResetTestV2) {
