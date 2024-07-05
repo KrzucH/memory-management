@@ -47,8 +47,7 @@ TEST(uniqAddTest, MoveTestV1) {
 }
 
 TEST(int, ResetTest) {
-    my::unique_ptr<int> uniq = new int(8);
-    constexpr int newValue = 6;
+    my::unique_ptr<int> uniq = new int(8);   
 
     uniq.reset();
 
@@ -117,7 +116,7 @@ TEST(uniqAddTest, ReleaseTestV2) {
     auto uniq2 = uniq.release();
     auto result = 30;
 
-    EXPECT_EQ(uniq2->checkAddTest(), 30);
+    EXPECT_EQ(uniq2->checkAddTest(), result);
 }
 
 TEST(uniqAddTest, ResetTestV2) {
