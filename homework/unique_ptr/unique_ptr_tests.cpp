@@ -18,26 +18,26 @@ private:
 };
 
 TEST(uniqAddTest, ArrowTest) {
-    unique_ptr<uniqAddTest> uniq = new uniqAddTest(20, 30);
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(20, 30);
     auto result = 50;
 
     EXPECT_EQ(uniq->checkAddTest(), result);
 }
 
 TEST(int, DereferenceTest) {
-    unique_ptr<int> uniq = new int(100);
+    my::unique_ptr<int> uniq = new int(100);
     auto result = 100;
 
     EXPECT_EQ(*uniq, result);
 }
 
 TEST(uniqIntTest, MoveTest) {
-    unique_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
     auto uniq1{std::move(uniq)};
 
     EXPECT_EQ(uniq.get(), nullptr);
 
-    unique_ptr<uniqAddTest> uniq2{};
+    my::unique_ptr<uniqAddTest> uniq2{};
 
     EXPECT_EQ(uniq2.get(), nullptr);
 
@@ -47,7 +47,7 @@ TEST(uniqIntTest, MoveTest) {
 }
 
 TEST(int, ResetTest) {
-    unique_ptr<int> uniq = new int(8);
+    my::unique_ptr<int> uniq = new int(8);
     constexpr int newValue = 6;
 
     uniq.reset(new int(newValue));
@@ -60,9 +60,9 @@ TEST(int, ResetTest) {
 }
 
 TEST(uniqAddTest, ReleaseTest) {
-    unique_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
+    my::unique_ptr<uniqAddTest> uniq = new uniqAddTest(100, 100);
 
-    unique_ptr<uniqAddTest> uniq2 = uniq.release();
+    my::unique_ptr<uniqAddTest> uniq2 = uniq.release();
 
     EXPECT_EQ(uniq.get(), nullptr);
     EXPECT_NE(uniq2.get(), nullptr);
