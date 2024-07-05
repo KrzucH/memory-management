@@ -2,7 +2,6 @@
 #include <memory>
 #include "unique_ptr.hpp"
 
-
 struct uniqAddTest {
     uniqAddTest(int value1, int value2)
         : value1_(value1),
