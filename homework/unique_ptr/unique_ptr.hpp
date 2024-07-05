@@ -1,27 +1,27 @@
 #pragma once
 
-namespace my {
+
 
 template <typename Type>
-class uniq_ptr {
+class unique_ptr {
 public:
-    uniq_ptr() {
+    unique_ptr() {
         ptr_ = nullptr;
     }
 
-    uniq_ptr(Type* uniq)
+    unique_ptr(Type* uniq)
         : ptr_(uniq) {}
 
-    uniq_ptr(const uniq_ptr&) = delete;
+    unique_ptr(const unique_ptr&) = delete;
 
-    uniq_ptr(uniq_ptr&& uniq) {
+    unique_ptr(unique_ptr&& uniq) {
         ptr_ = uniq.ptr_;
         uniq.ptr_ = nullptr;
     }
 
-    uniq_ptr& operator=(const uniq_ptr&) = delete;
+    unique_ptr& operator=(const unique_ptr&) = delete;
 
-    uniq_ptr& operator=(const uniq_ptr&& uniq) {
+    unique_ptr& operator=(const unique_ptr&& uniq) {
         if (uniq.ptr_ != nullptr) {
             delete ptr_;
             ptr_ = uniq.ptr_;
@@ -30,7 +30,7 @@ public:
         return *this;
     }
 
-    ~uniq_ptr() {
+    ~unique_ptr() {
         delete ptr_;
     }
 
@@ -65,5 +65,3 @@ public:
 private:
     Type* ptr_ = nullptr;
 };
-
-}  // namespace my
