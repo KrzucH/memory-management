@@ -5,7 +5,6 @@ namespace my {
 template <typename Type>
 class unique_ptr {
 public:
-
     unique_ptr(Type* uniq = nullptr)
         : ptr_(uniq) {}
 
